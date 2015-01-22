@@ -1,0 +1,12 @@
+<ul>
+<% @patients.each do |patient| %>
+  <li>
+    <%= patient.first_name %>
+    <%= patient.last_name %>
+    <%= patient.dob %>
+    <%= patient.description %>
+    <%= patient.gender %>
+    <%= patient.blood_type %>
+  </li>
+<% end %>
+</ul>
