@@ -1,8 +1,14 @@
 class Patient < ActiveRecord::Base
   BLOOD_OPTIONS = [
     "A",
+    "A-",
+    "A+",
     "B",
-    "O"
+    "B-",
+    "B+",
+    "O",
+    "O-",
+    "O+"
   ]
   validates :first_name, presence: true
   validates :last_name, presence: true
