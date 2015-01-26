@@ -15,6 +15,7 @@ class MedicationsController < ApplicationController
   def index
     @medications = Medication.all
   end
+
   def show
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:patient_id]
@@ -25,7 +26,13 @@ class MedicationsController < ApplicationController
     @doctor = Doctor.find params[:doctor_id]
     @patient = @doctor.patients.find params[:patient_id]
     @medication = @patient.medications.create medication_params
-    redirect_to doctor_patient_path(@doctor, @patient)
+    if @medication.save
+      flash:[:success] = "Medication added!"
+      redirect_to doctor_patient_path(@doctor, @patient)
+    else
+      flash:[:danger] = "Incomplete form!"
+      render :new
+    end
   end
 
   def edit
