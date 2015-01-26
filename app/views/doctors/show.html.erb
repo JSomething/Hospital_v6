@@ -1,11 +1,12 @@
 <h1><%= @doctor.doctor_name %></h1>
 <h3><%= @doctor.specialty %></h3>
 <%= link_to "Edit Doctor", edit_doctor_path(@doctor) %>
-<br>
+|
 <%= link_to "Delete Doctor", doctor_path(@doctor), method: :delete %>
 <br>
-<strong>Patient List</strong>
 <br>
+<strong>Patient List</strong>
+|
 <%= link_to "Add Patient", new_doctor_patient_path(@doctor) %>
 <% @patients.each do |patient| %>
 <ul class="dl-horizontal">
@@ -17,3 +18,5 @@
   <dd></dd>
 </ul>
 <% end %>
+
+<%= link_to "Back to Doctor List", doctors_path %>

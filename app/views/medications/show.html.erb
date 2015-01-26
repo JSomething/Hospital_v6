@@ -1,9 +1,12 @@
-<%= @medication.name %>
-<br>
-<%= @medication.company %>
-<br>
-<%= @medication.adverse_effects %>
-<br>
+
+<ul class="dl-horizontal">
+<dt>Name</dt>
+<dd><%= @medication.name %></dd>
+<dt>Company</dt>
+<dd><%= @medication.company %></dd>
+<dt>Adverse Effects</dt>
+<dd><%= @medication.adverse_effects %></dd>
+</ul>
 <%= link_to "Edit Medication", edit_doctor_patient_medication_path(@doctor, @patient, @medication) %>
 |
 <%= link_to "Delete Medication", doctor_patient_medication_path(@doctor, @patient, @medication), method: :delete %>
