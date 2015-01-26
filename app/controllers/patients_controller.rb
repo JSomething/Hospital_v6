@@ -1,13 +1,21 @@
 class PatientsController < ApplicationController
+
+  def show
+    @doctor = Doctor.find params[:doctor_id]
+    @patient = Patient.find params[:id]
+  end
+
   def new
-    @patient = Patient.new
+    @doctor = Doctor.find params[:doctor_id]
+    @patient = @doctor.patients.new
   end
 
   def create
-    @patient = Patient.create patient_params
+    @doctor = Doctor.find params[:doctor_id]
+    @patient = @doctor.patients.create patient_params
     if @patient.save
       flash[:success] = "Welcome to St. Jon's!"
-      redirect_to patients_path
+      redirect_to doctor_path(@doctor)
     else
       flash[:danger] = "Form incomplete"
       render :new
@@ -19,10 +27,12 @@ class PatientsController < ApplicationController
   end
 
   def edit
+    @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
   end
 
   def update
+    @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
     @patient.update_attributes patient_params
     redirect_to patients_path

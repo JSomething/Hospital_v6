@@ -1,5 +1,5 @@
 
-<%= form_for @patient do |p| %>
+<%= form_for [@doctor, @patient] do |p| %>
 <ul class="list-group" id="sign_up_form">
   <%= render 'errors' %>
   <li class="list-group-item">

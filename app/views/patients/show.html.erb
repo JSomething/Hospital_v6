@@ -1,0 +1,17 @@
+<h1><%= @patient.first_name %><%= @patient.last_name %></h1>
+<strong>Medication List</strong>
+<%= link_to "Add Medication", new_doctor_patient_medication_path(@doctor, @patient) %>
+<% @patient.medications.each do |medication| %>
+<ul class="dl-horizontal">
+  <dt>Name</dt>
+  <dd><%= medication.name %></dd>
+  <dt>Company</dt>
+  <dd><%= medication.company %></dd>
+  <dt>Adverse Effects</dt>
+  <dd><%= medication.adverse_effects %></dd>
+  <dt><%= link_to "Medication Profile", doctor_patient_medication_path(@doctor, @patient, medication) %></dt>
+  <dd></dd>
+  <dt><%= link_to "Back to doctor", doctor_path(@doctor) %></dt>
+  <dd></dd>
+</ul>
+<% end %>

@@ -2,7 +2,7 @@
 <% @patients.each do |patient| %>
 <dl class="dl-horizontal">
   <dt>First Name</dt>
-  <dd><%= patient.first_name %></dd>
+  <dd><%= link_to patient.first_name, patient_path(patient) %></dd>
   <dt>Last Name</dt>
   <dd><%= patient.last_name %></dd>
   <dt>Date of Birth</dt>

@@ -1,0 +1,14 @@
+<%= form_for [@doctor, @patient, @medication] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :company %>
+  <%= f.text_field :company %>
+  <br>
+  <%= f.label :adverse_effects %>
+  <%= f.text_field :adverse_effects %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Return to Patient", doctor_patient_path(@doctor, @patient) %>)

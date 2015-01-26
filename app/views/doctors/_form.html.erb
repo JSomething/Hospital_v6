@@ -1,0 +1,11 @@
+<%= form_for [@doctor] do |f| %>
+  <div class="form-group">
+    <%= f.label :doctor_name %>
+    <%= f.text_field :doctor_name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :specialty %>
+    <%= f.text_field :specialty %>
+  </div>
+    <%= f.submit "Register Doctor", class: "btn btn-primary" %>
+  <% end %>

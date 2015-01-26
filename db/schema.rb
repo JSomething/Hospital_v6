@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121233052) do
+ActiveRecord::Schema.define(version: 20150126025522) do
+
+  create_table "doctors", force: :cascade do |t|
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "doctor_name", limit: 255
+    t.string   "specialty",   limit: 255
+  end
+
+  create_table "medications", force: :cascade do |t|
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "patient_id",      limit: 4
+    t.string   "name",            limit: 255
+    t.string   "company",         limit: 255
+    t.string   "adverse_effects", limit: 255
+  end
 
   create_table "patients", force: :cascade do |t|
     t.string   "first_name",  limit: 255
@@ -22,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150121233052) do
     t.string   "blood_type",  limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "doctor_id",   limit: 4
   end
 
 end
