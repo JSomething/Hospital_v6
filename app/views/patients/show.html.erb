@@ -1,4 +1,4 @@
-<h1><%= @patient.first_name %><%= @patient.last_name %></h1>
+<h1><%= @patient.first_name %> <%= @patient.last_name %></h1>
 <br>
 <%= link_to "Edit Patient", edit_doctor_patient_path(@doctor, @patient) %>
 |
@@ -8,6 +8,8 @@
 <strong>Medication List</strong>
 |
 <%= link_to "Add Medication", new_doctor_patient_medication_path(@doctor, @patient) %>
+<br>
+<br>
 <% @patient.medications.each do |medication| %>
 <ul class="dl-horizontal">
   <dt>Name</dt>
@@ -20,7 +22,6 @@
   <dd></dd>
 </ul>
 <% end %>
-
-
-
+<br>
+<br>
 <%= link_to "Back to doctor", doctor_path(@doctor) %> 

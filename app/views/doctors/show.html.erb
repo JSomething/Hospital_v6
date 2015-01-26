@@ -8,6 +8,8 @@
 <strong>Patient List</strong>
 |
 <%= link_to "Add Patient", new_doctor_patient_path(@doctor) %>
+<br>
+<br>
 <% @patients.each do |patient| %>
 <ul class="dl-horizontal">
   <dt>Name</dt>
@@ -18,5 +20,6 @@
   <dd></dd>
 </ul>
 <% end %>
-
+<br>
+<br>
 <%= link_to "Back to Doctor List", doctors_path %>
