@@ -1,0 +1,21 @@
+= form_for [@doctor, @patient, @medication] do |f|
+.field
+  = f.label :name
+  %br/
+  = f.text_field :name
+.field
+  = f.label :company
+  %br/
+  = f.text_field :company
+.field
+  = f.label :adverse_effects
+  %br/
+  = f.text_field :adverse_effects
+  %br/
+.field
+  = @patients.each do |patient|
+    = check_box_tag 'medication[patient_ids][]', food.id, @mediation.patients.include?(patient)
+    = food.name
+    %br/
+  = f.submit
+= link_to "Return to Patient", doctor_patient_path(@doctor, @patient)

@@ -3,6 +3,7 @@ class PatientsController < ApplicationController
   def show
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
+    @nurse = Nurse.new
   end
 
   def new
@@ -13,6 +14,7 @@ class PatientsController < ApplicationController
   def create
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.create patient_params
+    @medications = Medication.all
     if @patient.save
       flash[:success] = "Welcome to St. Jon's!"
       redirect_to doctor_path(@doctor)

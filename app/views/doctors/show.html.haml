@@ -1,0 +1,27 @@
+%h1
+  = @doctor.doctor_name
+  %small= @doctor.specialty
+= link_to "Edit Doctor", edit_doctor_path(@doctor), class: 'btn btn-info'
+= link_to "Delete Doctor", doctor_path(@doctor), method: :delete, class: 'btn btn-danger'
+%br/
+%br/
+%h3 Patient List
+= link_to "Add Patient", new_patient_path(@doctor), class: 'btn btn-primary'
+%br/
+%br/
+- @patients.each do |patient|
+  %ul.dl-horizontal
+    %dt Name
+    %dd= patient.first_name
+    %dt Description
+    %dd= patient.description
+    %dt= link_to 'Patient Profile', patient_path(@doctor, patient)
+    %dd
+%br/
+%br/
+= form_for @nurse, url: create_nurse_doctor_path(@doctor) do |f|
+  = f.label :content
+  = f.text_area :content
+  %br/
+  = f.submit
+  = link_to "Back to Doctor List", doctors_path
