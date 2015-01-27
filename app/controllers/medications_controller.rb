@@ -24,13 +24,13 @@ class MedicationsController < ApplicationController
 
   def create
     @doctor = Doctor.find params[:doctor_id]
-    @patient = @doctor.patients.find params[:patient_id]
-    @medication = @patient.medications.create medication_params
+    @patient = Patient.find params[:patient_id]
+    @medication = Medication.create medication_params
     if @medication.save
-      flash:[:success] = "Medication added!"
+      flash[:success] = "Medication added!"
       redirect_to doctor_patient_path(@doctor, @patient)
     else
-      flash:[:danger] = "Incomplete form!"
+      flash[:danger] = "Incomplete form!"
       render :new
     end
   end
@@ -38,15 +38,15 @@ class MedicationsController < ApplicationController
   def edit
     @doctor = Doctor.find params[:doctor_id]
     @patient = @doctor.patients.find params[:patient_id]
-    @medication = @patient.medications.find params[:id]
+    @medication = Medication.find params[:id]
   end
 
   def update
     @doctor = Doctor.find params[:doctor_id]
     @patient = @doctor.patients.find params[:patient_id]
-    @medication = @patient.medications.find params[:id]
+    @medication = Medications.find params[:id]
     @medication.update medication_params
-    redirect_to doctor_patient_path(@doctor, @patient)
+    redirect_to patient_path
   end
 
   def destroy
@@ -54,7 +54,7 @@ class MedicationsController < ApplicationController
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:patient_id]
     @medication.delete
-    redirect_to doctor_patient_path(@doctor, @patient)
+    redirect_to patient_path
   end
 
 private

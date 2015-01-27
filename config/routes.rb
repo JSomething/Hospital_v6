@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
   resources :doctors do
-    resources :patients do
-      resources :medications
+    member do
+      post :create_nurse
     end
   end
+
+  resources :patients 
+
+  
+  resources :medications
 
   get 'static_pages/home'
 

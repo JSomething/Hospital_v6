@@ -1,8 +1,8 @@
 
 <h1>Medication Info</h1>
 <br>
-<%= link_to "Edit Medication", edit_doctor_patient_medication_path(@doctor, @patient, @medication), class: 'btn btn-info' %>
-<%= link_to "Delete Medication", doctor_patient_medication_path(@doctor, @patient, @medication), method: :delete, class: 'btn btn-danger' %>
+<%= link_to "Edit Medication", edit_path(@medication), class: 'btn btn-info' %>
+<%= link_to "Delete Medication", medication_path(@medication), method: :delete, class: 'btn btn-danger' %>
 <br>
 <br>
 <ul class="dl-horizontal">
@@ -15,4 +15,4 @@
 </ul>
 <br>
 <br>
-<%= link_to "Back to patient", doctor_patient_path(@doctor, @patient) %> 
+<%= link_to "Back to patient", patient_path(@patient) %> 

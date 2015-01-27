@@ -1,10 +1,10 @@
 <h1><%= @patient.first_name %> <%= @patient.last_name %></h1>
-<%= link_to "Edit Patient", edit_doctor_patient_path(@doctor, @patient), class: 'btn btn-info'%>
-<%= link_to "Delete Patient", doctor_patient_path(@doctor, @patient), method: :delete, class: 'btn btn-danger'%>
+<%= link_to "Edit Patient", edit_patient_path(@patient), class: 'btn btn-info'%>
+<%= link_to "Delete Patient", patient_path(@patient), method: :delete, class: 'btn btn-danger'%>
 <br>
 <br>
 <h3>Medication List</h3>
-<%= link_to "Add Medication", new_doctor_patient_medication_path(@doctor, @patient), class: 'btn btn-primary'%>
+<%= link_to "Add Medication", new_medication_path, class: 'btn btn-primary'%>
 <br>
 <br>
 <% @patient.medications.each do |medication| %>
@@ -15,7 +15,7 @@
   <dd><%= medication.company %></dd>
   <dt>Adverse Effects</dt>
   <dd><%= medication.adverse_effects %></dd>
-  <dt><%= link_to "Medication Profile", doctor_patient_medication_path(@doctor, @patient, medication) %></dt>
+  <dt><%= link_to "Medication Profile", medication_path(medication) %></dt>
   <dd></dd>
 </ul>
 <% end %>

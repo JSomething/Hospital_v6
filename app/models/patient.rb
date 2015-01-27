@@ -1,7 +1,9 @@
 class Patient < ActiveRecord::Base
 
   belongs_to :doctor
-  has_many :medications, dependent: :destroy
+  has_many :patient_meds
+  has_many :medications, through: :patient_meds
+  has_many :nurses, as: :nurseable
 
   BLOOD_OPTIONS = [
     "A",

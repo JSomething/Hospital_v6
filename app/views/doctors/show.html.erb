@@ -4,7 +4,7 @@
 <br>
 <br>
 <h3>Patient List</h3>
-<%= link_to "Add Patient", new_doctor_patient_path(@doctor), class: 'btn btn-primary' %>
+<%= link_to "Add Patient", new_patient_path(@doctor), class: 'btn btn-primary' %>
 <br>
 <br>
 <% @patients.each do |patient| %>
@@ -13,7 +13,7 @@
   <dd><%= patient.first_name %></dd>
   <dt>Description</dt>
   <dd><%= patient.description %></dd>
-  <dt><%= link_to 'Patient Profile', doctor_patient_path(@doctor, patient) %>
+  <dt><%= link_to 'Patient Profile', patient_path(@doctor, patient) %>
   <dd></dd>
 </ul>
 <% end %>
