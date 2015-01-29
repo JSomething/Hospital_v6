@@ -1,21 +1,18 @@
-= form_for [@doctor, @patient, @medication] do |f|
-.field
+= form_for [@medication] do |f|
   = f.label :name
-  %br/
   = f.text_field :name
-.field
+  %bt/
   = f.label :company
-  %br/
   = f.text_field :company
-.field
-  = f.label :adverse_effects
   %br/
+  = f.label :adverse_effects
   = f.text_field :adverse_effects
   %br/
-.field
-  = @patients.each do |patient|
-    = check_box_tag 'medication[patient_ids][]', food.id, @mediation.patients.include?(patient)
-    = food.name
+  %h5 Prescription for:
+  = hidden_field_tag 'medication[patient_ids][]', ''
+  - @patients.each do |patient|
+    = check_box_tag 'medication[patient_ids][]', patient.id, @medication.patients.include?(patient)
+    = patient.first_name
+    = patient.last_name
     %br/
   = f.submit
-= link_to "Return to Patient", doctor_patient_path(@doctor, @patient)

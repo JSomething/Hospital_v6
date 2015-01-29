@@ -6,7 +6,7 @@
 %br/
 %br/
 %h3 Patient List
-= link_to "Add Patient", new_patient_path(@doctor), class: 'btn btn-primary'
+= link_to "Add Patient", new_doctor_patient_path(@doctor), class: 'btn btn-primary'
 %br/
 %br/
 - @patients.each do |patient|
@@ -15,13 +15,20 @@
     %dd= patient.first_name
     %dt Description
     %dd= patient.description
-    %dt= link_to 'Patient Profile', patient_path(@doctor, patient)
+    %dt= link_to 'Patient Profile', doctor_patient_path(@doctor, patient)
     %dd
 %br/
 %br/
 = form_for @nurse, url: create_nurse_doctor_path(@doctor) do |f|
-  = f.label :content
-  = f.text_area :content
+  = f.label :Nurse_name
+  = f.text_area :nurse_name
   %br/
   = f.submit
   = link_to "Back to Doctor List", doctors_path
+  %br/
+%ul
+  - @nurses.each do |nurse|
+    %li
+      = nurse.nurse_name
+      = link_to "Delete Nurse", destroy_nurse_doctor_path(nurse), method: :delete
+      %br/

@@ -1,0 +1,51 @@
+%h1
+  = @patient.first_name
+  = @patient.last_name
+%table.table
+  %tr
+    %th Date of Birth
+    %th Description
+    %th Gender
+    %th Blood Type
+  %tr
+    %td= @patient.dob
+    %td= @patient.description
+    %td= @patient.gender
+    %td= @patient.blood_type
+= link_to "Edit Patient", edit_doctor_patient_path(@doctor, @patient), class: 'btn btn-info'
+= link_to "Delete Patient", doctor_patient_path(@doctor, @patient), method: :delete, class: 'btn btn-danger'
+%br/
+%br/
+%h3 Medication List
+= link_to "Add Medication", new_medication_path, class: 'btn btn-primary'
+%br/
+%br/
+- @patient.medications.each do |medication|
+  %ul.dl-horizontal
+    %dt Name
+    %dd= medication.name
+    %dt Company
+    %dd= medication.company
+    %dt Adverse Effects
+    %dd= medication.adverse_effects
+    %dt= link_to "Medication Profile", medication_path(medication)
+    %dd
+%br/
+%br/
+%h3 Assign Help
+= form_for @nurse, url: create_nurse_doctor_patient_path(@doctor, @patient) do |f|
+  = f.label :name
+  = f.text_field :nurse_name
+  %br
+  = f.submit
+%br
+%strong Nurse List
+%br
+- @nurses.each do |nurse|
+  %br
+  %strong Name:
+  = nurse.nurse_name
+  %br
+  = link_to "Delete Nurse", destroy_nurse_doctor_patient_path(@patient, nurse), method: :delete
+  %br
+= link_to "Back to doctor", doctor_path(@doctor)

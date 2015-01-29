@@ -12,6 +12,7 @@ class DoctorsController < ApplicationController
     @doctor = Doctor.find params[:id]
     @patients = @doctor.patients
     @nurse = Nurse.new
+    @nurses = @doctor.nurses
   end
 
   def create
@@ -23,6 +24,21 @@ class DoctorsController < ApplicationController
       flash[:danger] = "Form incomplete"
       render :new
     end
+  end
+
+  def create_nurse
+    @doctor = Doctor.find params[:id]
+    @nurse = @doctor.nurses.create nurse_params
+    redirect_to doctor_path(@doctor)
+  end
+
+  def destroy_nurse
+    # @doctor = Doctor.find params[:id]
+    # @nurses = @doctor.nurses
+    @nurse = Nurse.find params[:id]
+    # @nurse = @doctor.nurses.find params[:id]
+    @nurse.delete
+    redirect_to @nurse.nurseable
   end
 
   def edit
@@ -50,4 +66,11 @@ class DoctorsController < ApplicationController
       :specialty
       )
   end
+
+  def nurse_params
+    params.require(:nurse).permit(
+      :nurse_name
+      )
+  end
+
 end

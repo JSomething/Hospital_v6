@@ -4,16 +4,19 @@ class PatientsController < ApplicationController
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
     @nurse = Nurse.new
+    @medication = @patient.medications
+    @nurses = @patient.nurses
   end
 
   def new
     @doctor = Doctor.find params[:doctor_id]
     @patient = @doctor.patients.new
+    @medications = Medication.all
   end
 
   def create
     @doctor = Doctor.find params[:doctor_id]
-    @patient = Patient.create patient_params
+    @patient = @doctor.patients.create patient_params
     @medications = Medication.all
     if @patient.save
       flash[:success] = "Welcome to St. Jon's!"
@@ -29,21 +32,37 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
+    @medications = @patient.medications
+    @doctor = Doctor.find params[:doctor_id]
   end
 
   def update
     @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
     @patient.update_attributes patient_params
-    redirect_to patients_path
+    redirect_to doctors_path(@doctor)
   end
 
   def destroy
+    @doctor = Doctor.find params[:doctor_id]
     @patient = Patient.find params[:id]
     @patient.delete
-    redirect_to patients_path
+    redirect_to doctors_path(@doctor)
+  end
+
+  def create_nurse
+    @doctor = Doctor.find params[:doctor_id]
+    @patient = Patient.find params[:id]
+    @nurse = @patient.nurses.create nurse_params
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
+  def destroy_nurse
+    @doctor = Doctor.find params[:doctor_id]
+    @nurse = Nurse.find params[:id]
+    @nurse.delete
+    redirect_to doctor_patient_path(@nurse.nurseable.doctor, @nurse.nurseable)
   end
 
   private
@@ -55,7 +74,14 @@ class PatientsController < ApplicationController
       :dob,
       :description,
       :gender,
-      :blood_type
+      :blood_type,
+      medication_ids: []
     )
+  end
+
+  def nurse_params
+    params.require(:nurse).permit(
+      :nurse_name,
+      )
   end
 end

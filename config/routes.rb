@@ -3,10 +3,17 @@ Rails.application.routes.draw do
   resources :doctors do
     member do
       post :create_nurse
+      delete :destroy_nurse
+    end
+ 
+
+    resources :patients do
+      member do
+        post :create_nurse
+        delete :destroy_nurse
+      end
     end
   end
-
-  resources :patients 
 
   
   resources :medications

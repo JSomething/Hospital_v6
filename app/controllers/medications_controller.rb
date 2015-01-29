@@ -7,9 +7,8 @@ class MedicationsController < ApplicationController
   end
 
   def new
-    @doctor = Doctor.find params[:doctor_id]
-    @patients = Patient.all
     @medication = Medication.new
+    @patients = Patient.all
   end
 
   def index
@@ -17,18 +16,15 @@ class MedicationsController < ApplicationController
   end
 
   def show
-    @doctor = Doctor.find params[:doctor_id]
-    @patient = Patient.find params[:patient_id]
     @medication = Medication.find params[:id]
   end
 
   def create
-    @doctor = Doctor.find params[:doctor_id]
-    @patient = Patient.find params[:patient_id]
     @medication = Medication.create medication_params
+    @patients = Patient.all
     if @medication.save
       flash[:success] = "Medication added!"
-      redirect_to doctor_patient_path(@doctor, @patient)
+      redirect_to doctors_path
     else
       flash[:danger] = "Incomplete form!"
       render :new
@@ -62,7 +58,8 @@ private
     params.require(:medication).permit(
       :name,
       :company,
-      :adverse_effects
+      :adverse_effects,
+      patient_ids: []
       )
   end
 
