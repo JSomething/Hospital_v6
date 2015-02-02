@@ -7,13 +7,38 @@
     %th Description
     %th Gender
     %th Blood Type
+    %th Visit Status
   %tr
     %td= @patient.dob
     %td= @patient.description
     %td= @patient.gender
     %td= @patient.blood_type
+    %td= @patient.workflow_state
 = link_to "Edit Patient", edit_doctor_patient_path(@doctor, @patient), class: 'btn btn-info'
 = link_to "Delete Patient", doctor_patient_path(@doctor, @patient), method: :delete, class: 'btn btn-danger'
+%br/
+- if @patient.waiting_room?
+  = link_to "Begin Intake", wait_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Checkup", checkup_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Recieve X-Ray", xray_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Start Surgery", surgery_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Bill Patient", bill_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+- if @patient.mid_checkup?
+  = link_to "Recieve X-Ray", xray_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Bill Patient", bill_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Discharge Patient", leave_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+- if @patient.mid_xray?
+  = link_to "Bill Patient", bill_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Discharge Patient", leave_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+- if @patient.mid_surgery?
+  = link_to "Bill Patient", bill_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+  = link_to "Discharge Patient", leave_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+- if @patient.paid?
+  = link_to "Discharge Patient", leave_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm' 
+- if @patient.left?
+  = link_to "Begin Intake", wait_patient_doctor_patient_path(@doctor, @patient), method: :patch, class: 'btn btn-default btn-sm'
+%br/
+
 %br/
 %br/
 %h3 Medication List

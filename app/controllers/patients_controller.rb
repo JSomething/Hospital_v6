@@ -1,4 +1,12 @@
 class PatientsController < ApplicationController
+  before_action :set_patient, only: [
+    :wait_patient,
+    :checkup_patient,
+    :xray_patient,
+    :surgery_patient,
+    :bill_patient,
+    :leave_patient
+  ]
 
   def show
     @doctor = Doctor.find params[:doctor_id]
@@ -65,7 +73,48 @@ class PatientsController < ApplicationController
     redirect_to doctor_patient_path(@nurse.nurseable.doctor, @nurse.nurseable)
   end
 
+  def wait_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.wait!
+    redirect_to doctor_patient_path(@doctor, @patient)
+
+  end
+
+  def checkup_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.checkup!
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
+  def xray_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.xray!
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
+  def surgery_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.enter_surgery!
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
+  def bill_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.pay!
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
+  def leave_patient
+    @doctor = Doctor.find params[:doctor_id]
+    @patient.leave!
+    redirect_to doctor_patient_path(@doctor, @patient)
+  end
+
   private
+
+  def set_patient
+    @patient = Patient.find params[:id]
+  end
 
   def patient_params
     params.require(:patient).permit(

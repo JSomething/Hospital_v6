@@ -1,0 +1,18 @@
+- provide(:pagetitle, 'Patients')
+- @patients.each do |patient|
+  %dl.dl-horizontal
+    %dt First Name
+    %dd= link_to patient.first_name, patient_path(patient)
+    %dt Last Name
+    %dd= patient.last_name
+    %dt Date of Birth
+    %dd= patient.dob
+    %dt Description
+    %dd= patient.description
+    %dt Gender
+    %dd= patient.gender
+    %dt Blood Type
+    %dd= patient.blood_type
+    %br
+      %dt= link_to "Edit", edit_patient_path(patient), class: 'btn btn-info'
+      %dd= link_to "Delete", patient_path(patient), method: :delete, class: 'btn btn-danger'
