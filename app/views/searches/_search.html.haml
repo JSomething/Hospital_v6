@@ -1,0 +1,9 @@
+/ = form tag searches_path, method: :get, class: "navbar-form", role: "search" do
+
+= form_tag searches_path, method: :get, class: "navbar-form", role: "search" do
+  .input-group
+    = text_field_tag 'q', nil, class: "form-control", id: "srch-term", placeholder: "Global Search"
+    .input-group-btn
+      %button.btn.btn-default{:style => "width:40px"}
+        %i.glyphicon.glyphicon-search
+

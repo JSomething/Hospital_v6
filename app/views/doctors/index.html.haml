@@ -1,0 +1,18 @@
+= form_tag doctors_path, method: :get, class: "navbar-form", role: "search" do
+  .input.group
+    = text_field_tag 'q', params[:q], class: "form-control", id: "srch-term", placeholder: "Search"
+    .input-group-butn
+      %button.btn.btn-default{:style => "width:60px"}
+        %i.glyphicon.glyphicon-search
+
+
+%h2 Doctor List
+- @doctors.each do |d|
+  %dl.dl-horizontal
+    %dt Name
+    %dd= d.doctor_name
+    %dt Specialty
+    %dd= d.specialty
+    %dt
+    %dd= link_to 'View Profile', doctor_path(d)
+= link_to 'Add a doctor', new_doctor_path

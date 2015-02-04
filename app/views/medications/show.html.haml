@@ -1,0 +1,15 @@
+%h1 Medication Info
+%br
+  = link_to "Edit Medication", edit_medication_path(@medication), class: 'btn btn-info'
+  = link_to "Delete Medication", medication_path(@medication), method: :delete, class: 'btn btn-danger'
+  %br
+    %br
+      %ul.dl-horizontal
+        %dt Name
+        %dd= @medication.name
+        %dt Company
+        %dd= @medication.company
+        %dt Adverse Effects
+        %dd= @medication.adverse_effects
+      %br
+        %br/

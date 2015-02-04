@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   
   resources :medications
-
+  resources :searches
   get 'static_pages/home'
 
   get 'static_pages/about'

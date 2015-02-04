@@ -1,0 +1,27 @@
+%h1 Search
+%ul
+  - @doctors.each do |doctor|
+    %dl.dl-horizontal
+      %dt Name
+      %dd= doctor.doctor_name
+      %dt Specialty
+      %dd= doctor.specialty
+%br
+  - @patients.each do |patient|
+    %dl.dl-horizontal
+      %dt Name
+      %dd= patient.first_name
+      %dt Description
+      %dd= patient.description
+%br
+  - @nurses.each do |nurse|
+    %dl.dl-horizontal
+      %dt Name
+      %dd= nurse.nurse_name
+%br
+  - @medications.each do |medication|
+    %dl.dl-horizontal
+      %dt Name
+      %dd= medication.name
+      %dt Company
+      %dd= medication.company

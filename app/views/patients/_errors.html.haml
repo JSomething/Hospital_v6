@@ -1,0 +1,5 @@
+- if @patient.errors.any?
+  #error_explanation
+    %ul
+      - @patient.errors.full_messages.each do |msg|
+        %li= msg
