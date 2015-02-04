@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.error{
+  display: none;
+}
+
+.error-show{
+  color: red;
+}
+
 html {
   overflow-y: scroll;
 }

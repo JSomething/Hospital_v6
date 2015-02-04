@@ -18,11 +18,13 @@
   .field
     = f.label :doctor_name
     %br
-      = f.text_field :doctor_name
+      = f.text_field :doctor_name, class: "name-test"
+      %span.error Please fill in name
   .field
     = f.label :specialty
     %br
-      = f.text_field :specialty
+      = f.text_field :specialty, class: "doctor-specialty-test"
+      %span.error Please fill in specialty
     %br
   .actions
-    = f.submit
+    = f.submit "Submit", class: "btn btn-primary disabled doctor-submit"

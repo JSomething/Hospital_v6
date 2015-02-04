@@ -9,6 +9,8 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'workflow'
 gem 'ransack'
+gem 'quiet_assets'
+gem 'jquery-turbolinks'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
