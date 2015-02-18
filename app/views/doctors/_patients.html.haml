@@ -1,0 +1,10 @@
+- @patients.each do |patient|
+  %ul.dl-horizontal
+    %dt First Name
+    %dd= patient.first_name
+    %dt Last Name
+    %dd= patient.last_name
+    %dt Description
+    %dd= patient.description
+    %dt= link_to 'Patient Profile', doctor_patient_path(@doctor, patient)
+    %dd

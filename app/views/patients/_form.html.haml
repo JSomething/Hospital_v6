@@ -26,7 +26,7 @@
     %li.list-group-item
       %h3= p.label :blood_type, class: 'label label-default'
       = p.select :blood_type, options_for_select(Patient::BLOOD_OPTIONS, p.object.blood_type), include_blank: "--- Select ---"
-    = hidden_field_tag 'patient[drug_ids][]', ''
+    / = hidden_field_tag 'patient[drug_ids][]', ''
     %li.list-group-item
       - @medications.each do |medication|
         = check_box_tag 'patient[medication_ids][]', medication.id, @patient.medications.include?(medication)

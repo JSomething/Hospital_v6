@@ -1,0 +1,21 @@
+= @patient.workflow_state
+- if @patient.waiting_room?
+  = link_to "Begin Intake", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "wait", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Checkup", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "checkup", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Recieve X-Ray", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "xray", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Start Surgery", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "surgery", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Bill Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "bill", doctor_id: @doctor.id, patient_id: @patient.id
+- if @patient.mid_checkup?
+  = link_to "Recieve X-Ray", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "xray", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Bill Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "bill", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Discharge Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "discharge", doctor_id: @doctor.id, patient_id: @patient.id
+- if @patient.mid_xray?
+  = link_to "Bill Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "bill", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Discharge Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "discharge", doctor_id: @doctor.id, patient_id: @patient.id
+- if @patient.mid_surgery?
+  = link_to "Bill Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "bill", doctor_id: @doctor.id, patient_id: @patient.id
+  = link_to "Discharge Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "discharge", doctor_id: @doctor.id, patient_id: @patient.id
+- if @patient.paid?
+  = link_to "Discharge Patient", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "discharge", doctor_id: @doctor.id, patient_id: @patient.id
+- if @patient.discharged?
+  = link_to "Begin Intake", 'javascript:void(0);', class: 'btn btn-default btn-sm', id: "begin", doctor_id: @doctor.id, patient_id: @patient.id

@@ -14,9 +14,13 @@ class DoctorsController < ApplicationController
 
   def show
     @doctor = Doctor.find params[:id]
-    @patients = @doctor.patients
+    @patients = @doctor.patients.where(params[:search])
     @nurse = Nurse.new
     @nurses = @doctor.nurses
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
   end
 
   def create

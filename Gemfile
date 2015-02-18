@@ -11,6 +11,8 @@ gem 'workflow'
 gem 'ransack'
 gem 'quiet_assets'
 gem 'jquery-turbolinks'
+gem 'populator'
+gem 'faker'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

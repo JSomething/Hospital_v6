@@ -31,32 +31,40 @@ class Patient < ActiveRecord::Base
       event :xray, transitions_to: :mid_xray
       event :enter_surgery, transitions_to: :mid_surgery
       event :pay, transitions_to: :paid
-      event :leave, transitions_to: :left
+      event :discharge, transitions_to: :discharged
     end
 
     state :mid_checkup do
       event :xray, transitions_to: :mid_xray
       event :pay, transitions_to: :paid
-      event :leave, transitions_to: :left
+      event :discharge, transitions_to: :discharged
     end
 
     state :mid_xray do
       event :pay, transitions_to: :paid
       event :checkup, transitions_to: :mid_checkup
-      event :leave, transitions_to: :left
+      event :discharge, transitions_to: :discharged
     end
 
     state :mid_surgery do
       event :pay, transitions_to: :paid
-      event :leave, transitions_to: :left
+      event :discharge, transitions_to: :discharged
     end
 
     state :paid do
-      event :leave, transitions_to: :left
+      event :discharge, transitions_to: :discharged
     end
 
-    state :left do
+    state :discharged do
       event :wait, transitions_to: :waiting_room
     end
   end
+
+  #  def self.search(search)
+  #   if search
+  #     where("first_name LIKE ? OR last_name LIKE?", "%#{search}%", "%#{search}%")
+  #   else
+  #     scoped
+  #   end
+  # end
 end

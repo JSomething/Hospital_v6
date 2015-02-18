@@ -61,6 +61,8 @@ GEM
     debugger-linecache (1.2.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    faker (1.4.3)
+      i18n (~> 0.5)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -102,6 +104,7 @@ GEM
       mini_portile (~> 0.6.0)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
+    populator (1.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.0)
@@ -187,11 +190,13 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
+  faker
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
   mysql2
+  populator
   quiet_assets
   rails (= 4.2.0)
   ransack

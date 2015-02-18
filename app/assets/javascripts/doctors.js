@@ -17,14 +17,3 @@ $(document).ready( function() {
   });
 });
 
-// $(document).ready( function() {
-
-//   console.log("BEGIN");
-
-//   $( ".name-test" ).blur(function() {
-//     if($(".name-test").val() != "") {
-//       console.log("NO BUTTON FOR YOU");
-//       $(".doctor-submit").removeClass('disabled');
-//     }
-//   };
-// });

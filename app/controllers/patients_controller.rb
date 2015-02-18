@@ -5,7 +5,7 @@ class PatientsController < ApplicationController
     :xray_patient,
     :surgery_patient,
     :bill_patient,
-    :leave_patient
+    :discharge_patient
   ]
 
   def show
@@ -37,6 +37,7 @@ class PatientsController < ApplicationController
 
   def index
     @patients = Patient.all
+    @doctor = Doctor.find params[:doctor_id]
   end
 
   def edit
@@ -76,38 +77,64 @@ class PatientsController < ApplicationController
   def wait_patient
     @doctor = Doctor.find params[:doctor_id]
     @patient.wait!
-    redirect_to doctor_patient_path(@doctor, @patient)
-
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def checkup_patient
     @doctor = Doctor.find params[:doctor_id]
     @patient.checkup!
-    redirect_to doctor_patient_path(@doctor, @patient)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def xray_patient
     @doctor = Doctor.find params[:doctor_id]
     @patient.xray!
-    redirect_to doctor_patient_path(@doctor, @patient)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def surgery_patient
     @doctor = Doctor.find params[:doctor_id]
     @patient.enter_surgery!
-    redirect_to doctor_patient_path(@doctor, @patient)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def bill_patient
     @doctor = Doctor.find params[:doctor_id]
     @patient.pay!
-    redirect_to doctor_patient_path(@doctor, @patient)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
-  def leave_patient
+  def discharge_patient
     @doctor = Doctor.find params[:doctor_id]
-    @patient.leave!
-    redirect_to doctor_patient_path(@doctor, @patient)
+    @patient.discharge!
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  def patient_search
+    @doctor = Doctor.find params[:doctor_id]
+    @patients = Patient.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   private

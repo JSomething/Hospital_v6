@@ -1,9 +1,9 @@
-.row.patient-search-stuff
+.row
   .col-md-12.text-center
     %input.patient-search
       = link_to "Search", 'javascript:void(0);', class: "patient-search-submit", doctor_id: @doctor.id
 %br
-.container
+.container.patient-search-stuff
 - provide(:pagetitle, 'Patients')
 - @patients.each do |patient|
   %dl.dl-horizontal

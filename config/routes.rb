@@ -16,7 +16,10 @@ Rails.application.routes.draw do
         patch :xray_patient
         patch :surgery_patient
         patch :bill_patient
-        patch :leave_patient
+        patch :discharge_patient
+      end
+      collection do
+        get :patient_search
       end
     end
   end
